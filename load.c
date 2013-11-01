@@ -147,6 +147,7 @@ main(int argc, char** argv)
 	vm_set_desc(ctx, 0, VM_REG_GUEST_SS, 0, 0, 0x00000093);
 	vm_set_desc(ctx, 0, VM_REG_GUEST_TR, 0, 0, 0x0000008b);
 	vm_set_desc(ctx, 0, VM_REG_GUEST_LDTR, 0, 0, DESC_UNUSABLE);
+	vm_set_desc(ctx, 0, VM_REG_GUEST_GDTR, ADDR_GDT, GUEST_GDTR_LIMIT, 0);
 
 	vm_set_register(ctx, 0, VM_REG_GUEST_CS, GSEL(GUEST_CODE_SEL, SEL_KPL));
 	vm_set_register(ctx, 0, VM_REG_GUEST_DS, GSEL(GUEST_DATA_SEL, SEL_KPL));
@@ -161,7 +162,6 @@ main(int argc, char** argv)
 	vm_set_register(ctx, 0, VM_REG_GUEST_CR3, ADDR_PT4);
 	vm_set_register(ctx, 0, VM_REG_GUEST_CR4, CR4_PAE | CR4_VMXE);
 	vm_set_register(ctx, 0, VM_REG_GUEST_EFER, EFER_LMA | EFER_LME);
-	vm_set_desc(ctx, 0, VM_REG_GUEST_GDTR, ADDR_GDT, GUEST_GDTR_LIMIT, 0);
 	vm_set_register(ctx, 0, VM_REG_GUEST_RFLAGS, 0x2);
 	vm_set_register(ctx, 0, VM_REG_GUEST_RSP, ADDR_STACK);
 	vm_set_register(ctx, 0, VM_REG_GUEST_RIP, ADDR_ENTRY);
