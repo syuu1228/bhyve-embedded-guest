@@ -158,10 +158,10 @@ main(int argc, char** argv)
 	vm_set_register(ctx, 0, VM_REG_GUEST_LDTR, 0);
 
 	vm_set_register(ctx, 0, VM_REG_GUEST_CR0, CR0_PG | CR0_PE | CR0_NE);
-	vm_set_register(ctx, 0, VM_REG_GUEST_CR3, 0x2000);
+	vm_set_register(ctx, 0, VM_REG_GUEST_CR3, ADDR_PT4);
 	vm_set_register(ctx, 0, VM_REG_GUEST_CR4, CR4_PAE | CR4_VMXE);
 	vm_set_register(ctx, 0, VM_REG_GUEST_EFER, EFER_LMA | EFER_LME);
-	vm_set_desc(ctx, 0, VM_REG_GUEST_GDTR, 0x5000, GUEST_GDTR_LIMIT, 0);
+	vm_set_desc(ctx, 0, VM_REG_GUEST_GDTR, ADDR_GDT, GUEST_GDTR_LIMIT, 0);
 	vm_set_register(ctx, 0, VM_REG_GUEST_RFLAGS, 0x2);
 	vm_set_register(ctx, 0, VM_REG_GUEST_RSP, ADDR_STACK);
 	vm_set_register(ctx, 0, VM_REG_GUEST_RIP, ADDR_ENTRY);
